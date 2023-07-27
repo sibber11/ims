@@ -28,7 +28,7 @@ class ProfileTest extends TestCase
         $response = $this
             ->actingAs($user)
             ->patch('/profile', [
-                'name' => 'Test User',
+                'first_name' => 'TestOne',
                 'email' => 'test@example.com',
             ]);
 
@@ -38,7 +38,7 @@ class ProfileTest extends TestCase
 
         $user->refresh();
 
-        $this->assertSame('Test User', $user->name);
+        $this->assertSame('TestOne', $user->first_name);
         $this->assertSame('test@example.com', $user->email);
         $this->assertNull($user->email_verified_at);
     }
@@ -76,7 +76,8 @@ class ProfileTest extends TestCase
             ->assertRedirect('/');
 
         $this->assertGuest();
-        $this->assertNull($user->fresh());
+        // check if the user model is soft deleted
+        $this->assertNotNull($user->fresh()->deleted_at);
     }
 
     public function test_correct_password_must_be_provided_to_delete_account(): void

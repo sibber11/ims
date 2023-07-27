@@ -15,9 +15,10 @@ return new class extends Migration {
             $table->string('mobile')->unique();
             $table->string('email')->unique();
             $table->string('password');
-            $table->dateTime('last_login');
-            $table->string('intro');
-            $table->string('profile');
+            $table->dateTime('last_login')->nullable();
+            $table->string('intro')->nullable();
+            $table->string('profile')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -18,11 +18,12 @@ class UserFactory extends Factory
             'username' => $this->faker->unique()->userName(),
             'mobile' => $this->faker->word(),
             'email' => $this->faker->unique()->safeEmail(),
-            'password' => bcrypt($this->faker->password()),
+            'password' => bcrypt('password'),
             'intro' => $this->faker->word(),
             'profile' => $this->faker->word(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
+            'email_verified_at' => Carbon::now()
         ];
     }
 }
