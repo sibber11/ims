@@ -9,10 +9,10 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required'],
-            'summary' => ['required'],
+            'title' => ['required','string', 'max:255'],
+            'summary' => ['required','string', 'max:255'],
             'type' => ['required', 'integer'],
-            'content' => ['required'],
+            'content' => ['required','string', 'max:255'],
         ];
     }
 

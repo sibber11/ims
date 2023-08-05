@@ -15,8 +15,8 @@ class BrandResource extends JsonResource
             'title' => $this->title,
             'summary' => $this->summary,
             'content' => $this->content,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            // 'created_at' => $this->created_at,
+            // 'updated_at' => $this->updated_at,
         ];
     }
 }
