@@ -16,12 +16,18 @@ class ItemResource extends JsonResource
             'retail_price' => $this->retail_price,
             'discount' => $this->discount,
             'price' => $this->price,
-            'quantity_recieved' => $this->quantity_recieved,
+            'quantity_received' => $this->quantity_received,
             'sold' => $this->sold,
             'available' => $this->available,
             'defective' => $this->defective,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'product_id' => $this->product_id,
+            'brand_id' => $this->brand_id,
+            'user_id' => $this->user_id,
+            'order_id' => $this->order_id,
+            'created_by' => $this->creator->username,
+            'updated_by' => $this->updater->username,
         ];
     }
 }

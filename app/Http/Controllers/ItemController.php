@@ -5,17 +5,30 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ItemRequest;
 use App\Http\Resources\ItemResource;
 use App\Models\Item;
+use Inertia\Inertia;
 
 class ItemController extends Controller
 {
     public function index()
     {
-        return ItemResource::collection(Item::all());
+        $items =  ItemResource::collection(Item::paginate(10));
+        return Inertia::render('Model/Item/Index',[
+            'resources' => $items,
+        ]);
+    }
+
+    public function create()
+    {
+        return Inertia::render('Model/Item/Create',[
+            
+        ]);
     }
 
     public function store(ItemRequest $request)
     {
-        return new ItemResource(Item::create($request->validated()));
+        $item = Item::create($request->validated());
+
+        return back()->with('success', 'Item stored.');
     }
 
     public function show(Item $item)
@@ -34,6 +47,6 @@ class ItemController extends Controller
     {
         $item->delete();
 
-        return response()->json();
+        return back()->with('success', 'Item deleted.');
     }
 }

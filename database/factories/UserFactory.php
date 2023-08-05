@@ -16,7 +16,7 @@ class UserFactory extends Factory
             'first_name' => $this->faker->firstName(),
             'last_name' => $this->faker->lastName(),
             'username' => $this->faker->unique()->userName(),
-            'mobile' => $this->faker->word(),
+            'mobile' => $this->faker->unique()->phoneNumber(),
             'email' => $this->faker->unique()->safeEmail(),
             'password' => bcrypt('password'),
             'intro' => $this->faker->word(),

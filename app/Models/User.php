@@ -28,4 +28,6 @@ class User extends Authenticatable
     protected $casts = [
         'last_login' => 'datetime',
     ];
+
+    
 }

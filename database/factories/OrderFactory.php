@@ -26,6 +26,8 @@ class OrderFactory extends Factory
             'content' => $this->faker->word(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
+
+            'user_id' =>\App\Models\User::factory(),
         ];
     }
 }

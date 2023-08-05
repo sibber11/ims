@@ -20,4 +20,33 @@ class Item extends Model
         'available',
         'defective',
     ];
+
+    protected $with = [
+        'creator',
+        'updater'
+    ];
+
+    public function product() {
+        return $this->belongsTo(Product::class);
+    }
+
+    public function brand() {
+        return $this->belongsTo(Brand::class);
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
+    public function order() {
+        return $this->belongsTo(Order::class);
+    }
+
+    public function creator() {
+        return $this->belongsTo(User::class, 'id');
+    }
+
+    public function updater() {
+        return $this->belongsTo(User::class, 'id');
+    }
 }

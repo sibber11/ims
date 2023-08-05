@@ -13,7 +13,7 @@ import LayoutGuest from "@/layouts/LayoutGuest.vue";
 import { useForm, Link } from "@inertiajs/vue3";
 
 const form = useForm({
-  email: "shields.rusty@example.org",
+  email: "test@example.com",
   password: "password",
   remember: false,
 });
