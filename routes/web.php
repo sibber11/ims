@@ -34,7 +34,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('category', \App\Http\Controllers\CategoryController::class);
     Route::resource('brand', \App\Http\Controllers\BrandController::class);
     Route::resource('product', \App\Http\Controllers\ProductController::class);
+    Route::resource('order', \App\Http\Controllers\OrderController::class);
     Route::resource('item', \App\Http\Controllers\ItemController::class);
+
+    Route::delete('order/delete-all', [\App\Http\Controllers\OrderController::class, 'deleteAll'])->name('order.delete_all');
 });
 
 require __DIR__.'/auth.php';

@@ -26,4 +26,10 @@ class UserFactory extends Factory
             'email_verified_at' => Carbon::now()
         ];
     }
+
+    public function supplier(){
+        return $this->afterCreating(function (User $user) {
+            $user->assignRole('supplier');
+        });
+    }
 }

@@ -26,7 +26,7 @@ class ItemFactory extends Factory
 
             'product_id' =>\App\Models\Product::factory(),
             'brand_id' =>\App\Models\Brand::factory(),
-            'user_id' =>\App\Models\User::factory(),
+            'supplier_id' =>\App\Models\User::factory()->supplier(),
             'order_id' =>\App\Models\Order::factory(),
 
             'created_by' =>\App\Models\User::factory(),

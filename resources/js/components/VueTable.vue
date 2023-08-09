@@ -15,7 +15,7 @@ const props = defineProps({
     type: String,
     required: true
   },
-  label:{
+  label: {
     type: String,
     required: false
   }
@@ -25,12 +25,12 @@ const confirmDelete = ref(false);
 
 const checkedRows = ref([]);
 
-const numPages = computed(() => props.resources.meta?.total);
+const numPages = computed(() => props.resources.meta.total);
 
-const currentPageHuman = computed(() => props.resources.meta?.current_page);
+const currentPageHuman = computed(() => props.resources.meta.current_page);
 
 const pagesList = computed(() => {
-  return props.resources.meta?.links;
+  return props.resources.meta.links;
 });
 
 const remove = (arr, cb) => {
@@ -46,16 +46,6 @@ const remove = (arr, cb) => {
 };
 
 const destroy = () => {
-    if (checkedRows.value.length) {
-        checkedRows.value.forEach((item) => {
-            router.delete(route(props.routeName + '.destroy', item.id));
-        });
-        checkedRows.value = [];
-        return;
-    }
-    if (!selectedModel.value) {
-        return;
-    }
   router.delete(route(props.routeName + '.destroy', selectedModel.value));
 };
 
@@ -71,19 +61,19 @@ const checked = (isChecked, item) => {
 };
 /* automatically get the head name of the tables */
 const headers = computed(() => {
-  if (props.resources.data?.length === 0) {
+  if (props.resources.data.length === 0) {
     return [];
   }
   return Object.keys(props.resources.data[0]);
 });
 
-const selectedModel= ref(null);
+const selectedModel = ref(null);
 
 
 /* try to find the label of the model if not provided */
-const modelNames = ['username','name', 'title', 'label', 'email', 'slug', 'id'];
+const modelNames = ['name', 'title', 'label'];
 
-const modelLabel = computed(()=>{
+const modelLabel = computed(() => {
   if (props.label) {
     return props.label;
   }
@@ -91,12 +81,14 @@ const modelLabel = computed(()=>{
     return modelNames[0];
   }
   const keys = Object.keys(props.resources.data[0]);
-  return keys.find(v=>modelNames.includes(v));
+  return keys.find(v => modelNames.includes(v));
 })
+console.log(modelLabel.value);
 </script>
 
 <template>
-    <CardBoxModal v-model="confirmDelete" v-if="selectedModel" title="Please confirm" button="danger" has-cancel @confirm="destroy">
+  <CardBoxModal v-model="confirmDelete" v-if="selectedModel" title="Please confirm" button="danger" has-cancel
+    @confirm="destroy">
     <p>Are you sure you want to delete <b>{{ selectedModel.title }}</b></p>
     <p>Click delete button to proceed.</p>
   </CardBoxModal>
@@ -106,8 +98,6 @@ const modelLabel = computed(()=>{
       class="inline-block px-2 py-1 rounded-sm mr-2 text-sm bg-gray-100 dark:bg-slate-700">
       {{ checkedRow[modelLabel] }}
     </span>
-      <BaseButton color="danger" :icon="mdiTrashCan" small
-        @click="confirmDelete = true; selectedModel = checkedRows;" />
   </div>
 
   <table>
@@ -123,14 +113,13 @@ const modelLabel = computed(()=>{
     <tbody>
       <tr v-for="item in resources.data" :key="item.id">
         <TableCheckboxCell v-if="checkable" @checked="checked($event, item)" />
-        <td :data-label="key" v-for="(value, key) in item" class="text-sm">
+        <td :data-label="key" v-for="(value, key) in item">
           {{ value }}
         </td>
         <td class="before:hidden lg:w-1 whitespace-nowrap">
           <BaseButtons type="justify-start lg:justify-end" no-wrap>
             <!-- <BaseButton color="info" :icon="mdiEye" small @click="isModalActive = true" /> -->
-            <BaseButton color="danger" :icon="mdiTrashCan" small
-              @click="confirmDelete = true; selectedModel = item;" />
+            <BaseButton color="danger" :icon="mdiTrashCan" small @click="confirmDelete = true; selectedModel = item;" />
           </BaseButtons>
         </td>
       </tr>

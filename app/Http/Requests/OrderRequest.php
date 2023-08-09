@@ -9,17 +9,13 @@ class OrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'type' => ['required', 'integer'],
-            'status' => ['required', 'integer'],
-            'sub_total' => ['required', 'numeric'],
-            'item_discount' => ['required', 'numeric'],
+            'type' => ['required', 'string', 'in:purchase,sale'],
             'tax' => ['required', 'numeric'],
             'shipping' => ['nullable', 'numeric'],
-            'total' => ['required', 'numeric'],
-            'promo' => ['nullable'],
-            'promo_discount' => ['nullable', 'numeric'],
-            'grand_total' => ['required', 'numeric'],
-            'content' => ['nullable'],
+            'promo' => ['nullable','string'],
+            'promo_discount' => ['required_with:promo', 'numeric'],
+            'content' => ['nullable', 'string'],
+            'items' => ['required', 'array'],
         ];
     }
 

@@ -29,5 +29,4 @@ class User extends Authenticatable
         'last_login' => 'datetime',
     ];
 
-    
 }
