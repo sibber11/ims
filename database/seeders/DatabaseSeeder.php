@@ -3,8 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,10 +14,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        
-
+        DB::beginTransaction();
+        $this->call([
+            RoleSeeder::class,
+            CustomerSeeder::class,
+            OrderSeeder::class
+        ]);
         \App\Models\User::factory()->create([
-            'username' => 'testuser',
+            'username' => 'test_user',
             'email' => 'test@example.com',
         ]);
 
@@ -24,7 +29,7 @@ class DatabaseSeeder extends Seeder
         // \App\Models\Category::factory(10)->create();
         // \App\Models\Brand::factory(10)->create();
         // \App\Models\User::factory(10)->create();
-        \App\Models\Item::factory(10)->create();
+        DB::commit();
 
     }
 }

@@ -55,9 +55,9 @@ const initial = {
     // sold: '',
     // available: '',
     defective: '',
-    product_id: '',
-    brand_id: '',
-    supplier_id: ''
+    product: '',
+    brand: '',
+    supplier: ''
 };
 
 const form = reactive({...initial})
@@ -92,23 +92,24 @@ defineExpose({form, reset})
             <div class="space-y-3">
                 <FormField>
                     <FormField label="Supplier" class="mb-0">
-                        <VueSelect aria-required="true" v-model="form.supplier_id" :options="suppliers.data" required>
+                        <VueSelect v-model="form.supplier" :options="suppliers.data">
                             <template #search="{attributes, events}">
                                 <input
                                     class="vs__search"
-                                    :required="!form.supplier_id"
+                                    :required="!form.supplier"
                                     v-bind="attributes"
                                     v-on="events"
                                 />
                             </template>
+                            <template #></template>
                         </VueSelect>
                     </FormField>
                     <FormField label="Brand">
-                        <VueSelect v-model="form.brand_id" :options="brands.data" required>
+                        <VueSelect v-model="form.brand" :options="brands.data">
                             <template #search="{attributes, events}">
                                 <input
                                     class="vs__search"
-                                    :required="!form.brand_id"
+                                    :required="!form.brand"
                                     v-bind="attributes"
                                     v-on="events"
                                 />
@@ -118,11 +119,11 @@ defineExpose({form, reset})
                 </FormField>
 
                 <FormField label="Product">
-                    <VueSelect v-model="form.product_id" :options="products.data" required>
+                    <VueSelect v-model="form.product" :options="products.data" required>
                         <template #search="{attributes, events}">
                             <input
                                 class="vs__search"
-                                :required="!form.product_id"
+                                :required="!form.product"
                                 v-bind="attributes"
                                 v-on="events"
                             />

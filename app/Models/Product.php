@@ -16,4 +16,12 @@ class Product extends Model
         'type',
         'content',
     ];
+
+    public function availableItem(){
+        return $this->hasOne(Item::class)->where('available', '>', 0)->oldestOfMany();
+    }
+
+    function items() {
+        return $this->hasMany(Item::class);
+    }
 }

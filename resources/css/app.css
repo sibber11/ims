@@ -6,3 +6,31 @@
 @import "_progress.css";
 @import "_scrollbars.css";
 @import "_table.css";
+
+:root {
+    --vs-controls-color: #664cc3 !important;
+    --vs-border-color: rgb(55 65 81) !important;
+
+    --vs-dropdown-bg: #282c34 !important;
+    --vs-dropdown-color: #cc99cd !important;
+    --vs-dropdown-option-color: #cc99cd !important;
+
+    --vs-selected-bg: #664cc3 !important;
+    --vs-selected-color: #eeeeee !important;
+
+    --vs-search-input-color: #eeeeee !important;
+
+    --vs-dropdown-option--active-bg: #664cc3 !important;
+    --vs-dropdown-option--active-color: #eeeeee !important;
+    --vs-line-height: normal !important;
+}
+
+.vs__search, .vs__search:focus{
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+}
+
+.vs__selected{
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+}

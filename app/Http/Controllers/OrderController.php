@@ -49,7 +49,6 @@ class OrderController extends Controller
         $order->creator()->associate(auth()->user());
         $order->calculate(collect($request->input('items')));
         $order->save();
-        //todo: add items
         ItemService::createMany($order, collect($request->input('items')));
         return to_route('order.index')->with('success', 'Order created.');
     }
@@ -57,9 +56,9 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Order $order)
     {
-        //
+        return $order->load('items');
     }
 
     /**

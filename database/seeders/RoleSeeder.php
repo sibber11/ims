@@ -8,7 +8,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class RoleSeeder extends Seeder
 {
-    private $roles = ['supplier', 'admin', 'customer'];
+    private $roles = ['supplier', 'admin', 'customer', 'seller'];
     /**
      * Run the database seeds.
      */

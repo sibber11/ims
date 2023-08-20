@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
+use App\Models\User;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,8 +37,22 @@ Route::middleware('auth')->group(function () {
     Route::resource('product', \App\Http\Controllers\ProductController::class);
     Route::resource('order', \App\Http\Controllers\OrderController::class);
     Route::resource('item', \App\Http\Controllers\ItemController::class);
+    Route::resource('sales', \App\Http\Controllers\SaleController::class);
 
     Route::delete('order/delete-all', [\App\Http\Controllers\OrderController::class, 'deleteAll'])->name('order.delete_all');
+    Route::resource('customers', \App\Http\Controllers\CustomerController::class);
+    Route::get('suppliers', function (\Illuminate\Http\Request $request){
+
+        return ['data'=>User::role('supplier')->limit(10)->get()];
+    })->name('suppliers.index');
+    Route::get('brands', function (\Illuminate\Http\Request $request){
+
+        return ['data'=>\App\Models\Brand::limit(10)->get()];
+    })->name('brands.index');
+    Route::get('products', function (\Illuminate\Http\Request $request){
+        return ['data'=>\App\Models\Product::with('availableItem')->limit(10)->get()];
+    })->name('products.index');
+
 });
 
 require __DIR__.'/auth.php';

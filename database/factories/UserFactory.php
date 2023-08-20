@@ -32,4 +32,10 @@ class UserFactory extends Factory
             $user->assignRole('supplier');
         });
     }
+
+    public function customer(){
+        return $this->afterCreating(function (User $user) {
+            $user->assignRole('customer');
+        });
+    }
 }

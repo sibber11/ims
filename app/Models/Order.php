@@ -36,14 +36,14 @@ class Order extends Model
     protected $casts = [
         'type' => 'integer',
         'status' => 'integer',
-        'sub_total' => 'float',
-        'item_discount' => 'float',
-        'tax' => 'float',
-        'shipping' => 'float',
-        'total' => 'float',
-        'promo' => 'float',
-        'promo_discount' => 'float',
-        'grand_total' => 'float',
+        'sub_total' => 'decimal:2',
+        'item_discount' => 'decimal:2',
+        'tax' => 'decimal:2',
+        'shipping' => 'decimal:2',
+        'total' => 'decimal:2',
+        'promo' => 'string',
+        'promo_discount' => 'decimal:2',
+        'grand_total' => 'decimal:2',
         'created_at' => 'datetime:Y-m-d H:i:s',
     ];
 

@@ -36,7 +36,7 @@ const headers = computed(() => {
 
             </SectionTitleLineWithButton>
             <CardBox class="mb-6 overflow-x-auto" has-table>
-                <TableModel :resources="resources" checkable route-name="order"/>
+                <TableModel :resources="resources" checkable route-name="order" has-show/>
             </CardBox>
 
         </SectionMain>

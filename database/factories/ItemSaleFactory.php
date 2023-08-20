@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\OrderItem;
+use App\Models\ItemSale;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Carbon;
 
-class OrderItemFactory extends Factory
+class ItemSaleFactory extends Factory
 {
-    protected $model = OrderItem::class;
+    protected $model = ItemSale::class;
 
     public function definition()
     {

@@ -13,8 +13,8 @@ class OrderFactory extends Factory
     public function definition()
     {
         return [
-            'type' => $this->faker->randomNumber(),
-            'status' => $this->faker->randomNumber(),
+            'type' => $this->faker->numberBetween(0, 1),
+            'status' => $this->faker->numberBetween(0, 5),
             'sub_total' => $this->faker->randomFloat(),
             'item_discount' => $this->faker->randomFloat(),
             'tax' => $this->faker->randomFloat(),
@@ -27,7 +27,7 @@ class OrderFactory extends Factory
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
 
-            'user_id' =>\App\Models\User::factory(),
+            'user_id' => \App\Models\User::factory(),
         ];
     }
 }

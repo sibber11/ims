@@ -57,12 +57,8 @@ const is = computed(() => {
     return props.as;
   }
 
-  if (props.routeName) {
+  if (props.routeName || props.href) {
     return Link;
-  }
-
-  if (props.href) {
-    return "a";
   }
 
   return "button";

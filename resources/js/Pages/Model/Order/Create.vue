@@ -23,34 +23,7 @@ const props = defineProps({
 
 const mainStore = useMainStore();
 
-const items = ref([{
-    "retail_price": 38,
-    "discount": 5,
-    "price": 110,
-    "quantity_received": 89,
-    "defective": 39,
-    "product_id": {"id": 3, "label": "repudiandae"},
-    "brand_id": {"id": 2, "label": "et"},
-    "supplier_id": {"id": 61, "label": "verda.oberbrunner"}
-}, {
-    "retail_price": 52,
-    "discount": 4,
-    "price": 46,
-    "quantity_received": 63,
-    "defective": 69,
-    "product_id": {"id": 3, "label": "repudiandae"},
-    "brand_id": {"id": 7, "label": "consequatur"},
-    "supplier_id": {"id": 60, "label": "vandervort.pearline"}
-}, {
-    "retail_price": 70,
-    "discount": 5,
-    "price": 55,
-    "quantity_received": 50,
-    "defective": 5,
-    "product_id": {"id": 4, "label": "ducimus"},
-    "brand_id": {"id": 7, "label": "consequatur"},
-    "supplier_id": {"id": 62, "label": "qprosacco"}
-}]);
+const items = ref([]);
 
 const total = computed(() => {
     return items.value.reduce((acc, item) => {
@@ -196,20 +169,5 @@ function keyName(key) {
 </template>
 
 <style scoped>
-:deep() {
-    --vs-controls-color: #664cc3;
-    --vs-border-color: #664cc3;
 
-    --vs-dropdown-bg: #282c34;
-    --vs-dropdown-color: #cc99cd;
-    --vs-dropdown-option-color: #cc99cd;
-
-    --vs-selected-bg: #664cc3;
-    --vs-selected-color: #eeeeee;
-
-    --vs-search-input-color: #eeeeee;
-
-    --vs-dropdown-option--active-bg: #664cc3;
-    --vs-dropdown-option--active-color: #eeeeee;
-}
 </style>

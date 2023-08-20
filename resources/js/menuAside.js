@@ -32,6 +32,11 @@ export default [
         icon: mdiTable,
     },
     {
+        route: "sales.index",
+        label: "Sales",
+        icon: mdiTable,
+    },
+    {
         route: "profile.edit",
         label: "Profile",
         icon: mdiAccountCircle,

@@ -15,7 +15,7 @@ class ProductFactory extends Factory
         return [
             'title' => $this->faker->word(),
             'summary' => $this->faker->text(),
-            'type' => $this->faker->randomNumber(),
+            'type' => $this->faker->numberBetween(0,10),
             'content' => $this->faker->word(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
