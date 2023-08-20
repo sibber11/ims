@@ -40,10 +40,15 @@ class Item extends Model
     {
         parent::boot();
 
-        static::creating(function ($item) {
+        // skip event when seeding
+        if (app()->runningInConsole())
+            return;
+
+        static::creating(function (self $item) {
             $item->created_by = auth()->user()->id;
             $item->updated_by = auth()->user()->id;
             $item->stock = $item->quantity_received;
+            $item->available = $item->quantity_received;
         });
 
         static ::updating(function ($item) {

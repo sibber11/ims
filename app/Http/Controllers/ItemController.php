@@ -19,9 +19,7 @@ class ItemController extends Controller
 
     public function create()
     {
-        return Inertia::render('Model/Item/Create',[
-            
-        ]);
+        return Inertia::render('Model/Item/Fields');
     }
 
     public function store(ItemRequest $request)
@@ -36,11 +34,18 @@ class ItemController extends Controller
         return new ItemResource($item);
     }
 
+    public function edit(Item $item)
+    {
+        return Inertia::render('Model/Item/Fields',[
+            'item' => $item,
+        ]);
+    }
+
     public function update(ItemRequest $request, Item $item)
     {
         $item->update($request->validated());
 
-        return new ItemResource($item);
+        return back()->with('success', 'Item updated successfully');
     }
 
     public function destroy(Item $item)
