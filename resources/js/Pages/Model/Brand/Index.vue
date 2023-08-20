@@ -27,7 +27,7 @@ const props = defineProps({
                 <BaseButton route-name="brand.create" label="Create Brand" color="info" rounded-full/>
             </SectionTitleLineWithButton>
             <CardBox class="mb-6" has-table>
-                <TableModel :resources="resources" checkable route-name="brand"/>
+                <TableModel :resources="resources" checkable route-name="brand" has-edit/>
             </CardBox>
         </SectionMain>
     </LayoutAuthenticated>

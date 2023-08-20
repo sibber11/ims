@@ -28,7 +28,7 @@ class BrandController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Model/Brand/Create');
+        return Inertia::render('Model/Brand/Fields');
     }
 
     /**
@@ -51,9 +51,11 @@ class BrandController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Brand $brand)
     {
-        //
+        return Inertia::render('Model/Brand/Fields',[
+            'brand' => $brand
+        ]);
     }
 
     /**
@@ -67,8 +69,9 @@ class BrandController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Brand $brand)
     {
-        //
+        $brand->delete();
+        return back()->with('success', 'Brand deleted successfully.');
     }
 }

@@ -8,13 +8,17 @@ import BaseButton from "@/components/BaseButton.vue";
 import BaseButtons from "@/components/BaseButtons.vue";
 import LayoutAuthenticated from "@/layouts/LayoutAuthenticated.vue";
 import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.vue";
-import { computed } from "vue";
-import { kebabCase } from 'lodash/string';
+import { onMounted } from "vue";
 import { useForm } from "@inertiajs/vue3";
 import { useMainStore } from "@/stores/main.js";
+import {setData} from '@/helpers.js'
+import { computed } from "vue";
 
 const props = defineProps({
-
+    brand: {
+        type: Object,
+        default: null
+    }
 })
 
 const mainStore = useMainStore();
@@ -24,22 +28,32 @@ const form = useForm({
     summary: '',
     content: ''
 });
-const slug = computed(() => kebabCase(form.title));
 
 const submit = () => {
-    form.post(route('brand.store'),{
-        onSuccess: ()=>{
+    form.post(route('brand.store'), {
+        onSuccess: () => {
             form.reset();
             mainStore.unDismissNotification();
         }
     })
 };
+
+onMounted(() => {
+    if (props.brand) {
+        setData(form,props.brand);
+    }
+});
+
+const title = computed(()=>{
+    return !props.brand? 'Create Brand':'Edit Brand';
+})
+
 </script>
 
 <template>
     <LayoutAuthenticated>
         <SectionMain>
-            <SectionTitleLineWithButton :icon="mdiBallotOutline" title="Create Brand" main>
+            <SectionTitleLineWithButton :icon="mdiBallotOutline" :title="title" main>
             </SectionTitleLineWithButton>
             <CardBox :is-form="true" @submit.prevent="submit">
 
